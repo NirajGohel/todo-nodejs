@@ -1,15 +1,15 @@
 let express = require("express");
 let mongodb = require("mongodb");
+const dotenv = require('dotenv')
+dotenv.config()
 
 let app = express();
 let db;
 
 app.use(express.static("public"));
 
-let connectionString =
-  "mongodb+srv://nirajgohel:16nirajfeb@cluster0-v6lgk.mongodb.net/TodoApp?retryWrites=true&w=majority";
 mongodb.connect(
-  connectionString,
+  process.env.CONNECTIONSTRING,
   { useNewUrlParser: true, useUnifiedTopology: true },
   function (err, client) {
     db = client.db();
